@@ -1,0 +1,39 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[headers]
+  # Security headers
+  [headers."/*"]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+
+  # CSS files - proper MIME type
+  [headers."/assets/*.css"]
+    Content-Type = "text/css"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  # JavaScript files
+  [headers."/assets/*.js"]
+    Content-Type = "application/javascript"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  # Cache static assets
+  [headers."/assets/*"]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  # Cache HTML files
+  [headers."/*.html"]
+    Cache-Control = "public, max-age=0, must-revalidate" 

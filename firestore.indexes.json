@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "emanetler",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "musteriId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "tarih",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "borclar",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "musteriId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "tarih",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "musteriler",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "sira",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

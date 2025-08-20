@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Kullanıcı verileri - sadece giriş yapmış kullanıcılar kendi verilerine erişebilir
+    match /users/{userId}/musteriler/{document} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /users/{userId}/emanetTurleri/{document} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /users/{userId}/emanetler/{document} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /users/{userId}/borclar/{document} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Genel ayarlar - herkes okuyabilir
+    match /appSettings/{document} {
+      allow read: if request.auth != null;
+    }
+  }
+}
+
